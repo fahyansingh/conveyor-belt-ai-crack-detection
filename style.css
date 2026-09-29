@@ -1,0 +1,400 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100vh;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #0f172a;
+    color: #e2e8f0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ==========================================
+   HEADER
+========================================== */
+header {
+    background: #111827;
+    padding: 5px 16px;
+    height: 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #334155;
+    flex-shrink: 0;
+}
+
+.header-left h1 { font-size: 17px; line-height: 19px; margin-bottom: 1px; }
+.header-left > p { color: #94a3b8; font-size: 8.5px; }
+.current-status { margin-top: 1px; font-size: 8.5px; color: #94a3b8; }
+.current-status span { font-weight: bold; color: #22c55e; }
+
+.system-status {
+    background: #064e3b;
+    color: #6ee7b7;
+    padding: 5px 9px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 8.5px;
+}
+
+.status-dot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background: #22c55e;
+    border-radius: 50%;
+    margin-right: 4px;
+}
+
+/* ==========================================
+   MAIN CONTAINER (NO SCROLL FIT)
+========================================== */
+main {
+    padding: 5px 14px 2px;
+    max-width: 1700px;
+    width: 100%;
+    margin: 0 auto;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 4px;
+}
+
+/* OVERALL HEALTH */
+.health-section {
+    background: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 6px;
+    padding: 3px 10px;
+    height: 38px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.health-info h2 { font-size: 12px; margin-bottom: 1px; }
+.health-info p { color: #94a3b8; font-size: 8.5px; }
+.health-status { display: flex; align-items: center; gap: 7px; }
+.health-score { font-size: 19px; font-weight: bold; color: #22c55e; }
+.health-status h3 { margin-bottom: 0; font-size: 11px; color: #22c55e; }
+.health-status p { color: #94a3b8; font-size: 8px; }
+
+/* PARAMETERS */
+.parameter-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+    flex-shrink: 0;
+}
+
+.card {
+    background: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 6px;
+    padding: 4px 9px;
+    height: 52px;
+}
+
+.card:hover { border-color: #64748b; }
+.card h3 { color: #94a3b8; font-size: 8px; text-transform: uppercase; margin-bottom: 1px; }
+.value { font-size: 17px; font-weight: bold; line-height: 18px; }
+.value span { font-size: 8.5px; color: #94a3b8; font-weight: normal; }
+.normal, .warning, .critical { font-size: 7.5px; margin-top: 1px; font-weight: bold; }
+.normal { color: #4ade80; }
+.warning { color: #eab308; }
+.critical { color: #ef4444; }
+
+/* ==========================================
+   CAMERA + IR SENSOR SECTION
+========================================== */
+.monitor-grid {
+    display: grid;
+    grid-template-columns: minmax(330px, 1.18fr) minmax(220px, 0.82fr);
+    gap: 6px;
+    align-items: stretch;
+    flex-shrink: 0;
+}
+
+.camera-panel, .ir-panel {
+    background: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 6px;
+    padding: 5px 9px;
+}
+
+.camera-panel h2 {
+    font-size: 12px;
+    margin-bottom: 4px;
+}
+
+/* IR SENSOR HEADING */
+.ir-panel h2 {
+    font-size: 15px;
+    font-weight: bold;
+    color: #38bdf8;
+    margin-bottom: 4px;
+}
+
+.camera-content {
+    display: grid;
+    grid-template-columns: 195px 1fr;
+    gap: 9px;
+    align-items: stretch;
+    background: #0f172a;
+    border-radius: 5px;
+    padding: 6px;
+    border: 1px solid #334155;
+}
+
+.camera-feed-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.camera-feed-area .camera-box {
+    width: 220px;
+    aspect-ratio: 4 / 3;
+    height: auto;
+    margin: 0 auto;
+    background: #020617;
+    border-radius: 4px;
+    border: 1px solid #334155;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.camera-box img {
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+}
+
+.camera-feed-area .live-indicator {
+    width: 180px;
+    margin-top: 3px;
+    color: #f87171;
+    font-size: 7.5px;
+    font-weight: bold;
+}
+
+.live-indicator span {
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    background: #ef4444;
+    border-radius: 50%;
+    margin-right: 3px;
+}
+
+.camera-inspection {
+    margin: 0;
+    padding: 5px 8px;
+    border: 1px solid #334155;
+    border-radius: 5px;
+    background: #0b1120;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.camera-inspection h3 {
+    font-size: 11px;
+    margin-bottom: 5px;
+    color: #38bdf8;
+}
+
+.camera-inspection-data {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5px;
+}
+
+.camera-inspection-data div {
+    background: #111c30;
+    padding: 6px 8px;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2px;
+    min-height: 38px;
+    border: 1px solid #1e293b;
+}
+
+.camera-inspection-data span {
+    color: #94a3b8;
+    font-size: 9px;
+}
+
+.camera-inspection-data strong {
+    color: #f1f5f9;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+#jointGapValue {
+    font-size: 13px;
+    color: #38bdf8;
+}
+
+/* IR DATA CARDS */
+.ir-panel {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.ir-data {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 5px;
+    width: 92%;
+    max-width: 320px;
+    margin: 2px auto 0;
+}
+
+.ir-data div {
+    flex: 1;
+    background: #0f172a;
+    padding: 6px 12px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #334155;
+    min-height: 36px;
+}
+
+.ir-data span {
+    color: #94a3b8;
+    font-size: 11.5px;
+    font-weight: 500;
+}
+
+.ir-data strong {
+    color: #38bdf8;
+    font-size: 11.5px;
+    font-weight: bold;
+    background: #111c30;
+    padding: 3px 8px;
+    border-radius: 4px;
+    border: 1px solid #1e293b;
+}
+
+/* ==========================================
+   GRAPHS (188px HEIGHT FOR CLEAN 1-SCREEN FIT)
+========================================== */
+.graphs-section {
+    background: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 6px;
+    padding: 5px 8px;
+    flex-shrink: 0;
+}
+
+.graphs-section h2 { font-size: 10.5px; margin-bottom: 2px; }
+
+.graphs-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+}
+
+.graph-card {
+    background: #0f172a;
+    border: 1px solid #334155;
+    border-radius: 5px;
+    padding: 4px 6px;
+    height: 188px;
+}
+
+.graph-card h3 { color: #94a3b8; font-size: 8px; margin-bottom: 1px; }
+.graph-card canvas { width: 100% !important; height: 162px !important; }
+
+/* ==========================================
+   SYSTEM ALERTS (ENLARGED, CENTERED & COMPACT WIDTH)
+========================================== */
+.alerts {
+    background: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 6px;
+    padding: 5px 12px 6px;
+    flex-shrink: 0;
+}
+
+.alerts h2 {
+    font-size: 12px;
+    margin-bottom: 4px;
+    color: #e2e8f0;
+}
+
+/* Width ko control karke center kiya */
+.alert-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px 10px;
+    width: 88%;
+    max-width: 1050px;
+    margin: 0 auto;
+}
+
+/* Alert box size and font bada kiya */
+.alert {
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 13px;
+    display: flex;
+    align-items: center;
+    border-left: 3px solid #22c55e;
+}
+
+.normal-alert { background: #052e16; color: #86efac; border-left-color: #22c55e; }
+.warning-alert { background: #422006; color: #fde047; border-left-color: #eab308; }
+.critical-alert { background: #450a0a; color: #fca5a5; border-left-color: #ef4444; }
+
+/* ==========================================
+   FOOTER
+========================================== */
+footer {
+    text-align: center;
+    padding: 2px;
+    color: #64748b;
+    font-size: 7.5px;
+    border-top: 1px solid #1e293b;
+    flex-shrink: 0;
+}
+
+/* RESPONSIVE (TABLETS / SMALLER SCREENS) */
+@media (max-width: 1100px) {
+    html, body { height: auto; overflow-y: auto; }
+    .parameter-grid, .graphs-grid { grid-template-columns: repeat(2, 1fr); }
+    .monitor-grid { grid-template-columns: 1fr; }
+    .alert-list { width: 100%; }
+}
+
+@media (max-width: 700px) {
+    header { height: auto; flex-direction: column; align-items: flex-start; gap: 4px; }
+    .parameter-grid, .alert-list { grid-template-columns: 1fr; }
+    .camera-inspection-data { grid-template-columns: 1fr; }
+}

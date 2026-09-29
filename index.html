@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Intelligent Conveyor Belt Health Monitoring
+    </title>
+
+    <link rel="stylesheet"
+        href="style.css">
+
+</head>
+
+<body>
+
+
+    <!-- ==========================================
+         HEADER
+    =========================================== -->
+
+    <header>
+
+        <div class="header-left">
+
+            <h1>
+                Intelligent Conveyor Belt Health Monitoring
+            </h1>
+
+            <p>
+                Real-Time Industrial Monitoring Dashboard
+            </p>
+
+            <div class="current-status">
+
+                Status:
+                <span>NORMAL</span>
+
+            </div>
+
+        </div>
+
+
+        <div class="system-status">
+
+            <span class="status-dot"></span>
+
+            SYSTEM NORMAL
+
+        </div>
+
+    </header>
+
+
+
+    <!-- ==========================================
+         MAIN
+    =========================================== -->
+
+    <main>
+
+
+        <!-- ======================================
+             OVERALL CONVEYOR HEALTH
+        ======================================= -->
+
+        <section class="health-section">
+
+            <div class="health-info">
+
+                <h2>
+                    Overall Conveyor Health
+                </h2>
+
+                <p>
+                    Real-Time Machine Condition
+                </p>
+
+            </div>
+
+
+            <div class="health-status">
+
+                <div
+                    class="health-score"
+                    id="healthScore">
+
+                    100%
+
+                </div>
+
+
+                <div>
+
+                    <h3 id="healthStatus">
+                        HEALTHY
+                    </h3>
+
+                    <p id="healthMessage">
+                        Conveyor operating normally
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ======================================
+             SENSOR PARAMETER CARDS
+        ======================================= -->
+
+        <section class="parameter-grid">
+
+
+            <!-- MOTOR CURRENT -->
+
+            <div class="card">
+
+                <h3>
+                    Motor Current
+                </h3>
+
+                <div class="value">
+
+                    <span id="currentValue">
+                        N/A
+                    </span>
+
+                    <span>
+                        A
+                    </span>
+
+                </div>
+
+                <div
+                    id="currentMotorStatus"
+                    class="normal">
+
+                    ● WAITING
+
+                </div>
+
+            </div>
+
+
+
+            <!-- MOTOR SPEED -->
+
+            <div class="card">
+
+                <h3>
+                    Motor Speed
+                </h3>
+
+                <div class="value">
+
+                    <span id="speedValue">
+                        N/A
+                    </span>
+
+                    <span>
+                        RPM
+                    </span>
+
+                </div>
+
+                <div
+                    id="speedStatus"
+                    class="normal">
+
+                    ● WAITING
+
+                </div>
+
+            </div>
+
+
+
+            <!-- MOTOR VIBRATION -->
+
+            <div class="card">
+
+                <h3>
+                    Motor Vibration
+                </h3>
+
+                <div class="value">
+
+                    <span id="vibrationValue">
+                        N/A
+                    </span>
+
+                    <span>
+                        mm/s
+                    </span>
+
+                </div>
+
+                <div
+                    id="vibrationStatus"
+                    class="normal">
+
+                    ● WAITING
+
+                </div>
+
+            </div>
+
+
+
+            <!-- MOTOR TEMPERATURE -->
+
+            <div class="card">
+
+                <h3>
+                    Motor Temperature
+                </h3>
+
+                <div class="value">
+
+                    <span id="temperatureValue">
+                        N/A
+                    </span>
+
+                    <span>
+                        °C
+                    </span>
+
+                </div>
+
+                <div
+                    id="temperatureStatus"
+                    class="normal">
+
+                    ● WAITING
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ======================================
+             CAMERA + IR SENSOR
+        ======================================= -->
+
+        <section class="monitor-grid">
+
+            <!-- COMBINED CAMERA + INSPECTION PANEL -->
+            <div class="camera-panel">
+
+                <h2>Live Camera Feed</h2>
+
+                <div class="camera-content">
+
+                    <div class="camera-feed-area">
+
+                        <div class="camera-box">
+                            <img id="liveCamera"
+                                src="http://127.0.0.1:5000/video_feed"
+                                style="width:100%; height:100%; object-fit:contain;">
+                        </div>
+
+                        <div class="live-indicator">
+                            <span></span>
+                            LIVE
+                        </div>
+
+                    </div>
+
+                    <div class="camera-inspection">
+
+                        <h3>Camera Inspection</h3>
+
+                        <div class="camera-inspection-data">
+
+                            <div>
+                             <span>Joint Detection</span>
+                             <strong id="jointDetection">NOT DETECTED</strong>
+                            </div>
+                            <div>
+                                <span>Detected Joint Gap</span>
+                                <strong id="jointGapValue">N/A</strong>
+                            </div>
+
+                            <div>
+                                <span>Gap Status</span>
+                                <strong id="gapStatus">WAITING</strong>
+                            </div>
+
+                            <div>
+                                <span>Crack Detection</span>
+                                <strong id="crackDetection">NOT DETECTED</strong>
+                            </div>
+
+                            <div>
+                              <span>Hole Detection</span>
+                             <strong id="holeDetection">NOT DETECTED</strong>
+                            </div>
+
+                            <div>
+                                <span>Vision Status</span>
+                                <strong id="cameraVisionStatus">NORMAL</strong>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- IR SENSOR PANEL -->
+            <div class="ir-panel">
+
+                <h2>IR Sensor</h2>
+
+                <div class="ir-data">
+
+                    <div>
+                        <span>Belt Status</span>
+                        <strong id="objectDetection">NORMAL</strong>
+                    </div>
+
+                    <div>
+                        <span>IR Status</span>
+                        <strong id="irSensorStatus">ACTIVE</strong>
+                    </div>
+
+                    <div>
+                        <span>Belt Condition</span>
+                        <strong id="beltCondition">NORMAL</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ======================================
+             LIVE SENSOR GRAPHS
+        ======================================= -->
+
+        <section class="graphs-section">
+
+            <h2>
+                Live Sensor Monitoring
+            </h2>
+
+
+            <div class="graphs-grid">
+
+
+                <!-- CURRENT GRAPH -->
+
+                <div class="graph-card">
+
+                    <h3>
+                        Motor Current
+                    </h3>
+
+                    <canvas
+                        id="currentChart">
+                    </canvas>
+
+                </div>
+
+
+                <!-- SPEED GRAPH -->
+
+                <div class="graph-card">
+
+                    <h3>
+                        Motor Speed
+                    </h3>
+
+                    <canvas
+                        id="speedChart">
+                    </canvas>
+
+                </div>
+
+
+                <!-- VIBRATION GRAPH -->
+
+                <div class="graph-card">
+
+                    <h3>
+                        Motor Vibration
+                    </h3>
+
+                    <canvas
+                        id="vibrationChart">
+                    </canvas>
+
+                </div>
+
+
+                <!-- TEMPERATURE GRAPH -->
+
+                <div class="graph-card">
+
+                    <h3>
+                        Motor Temperature
+                    </h3>
+
+                    <canvas
+                        id="temperatureChart">
+                    </canvas>
+
+                </div>
+
+            </div>
+
+        </section>
+        <!-- ==========================================
+             SYSTEM ALERTS
+        =========================================== -->
+
+        <section class="alerts">
+
+            <h2>
+                System Alerts
+            </h2>
+
+
+            <div class="alert-list">
+
+
+                <div
+                    id="liveAlert"
+                    class="alert normal-alert">
+
+                    ✓ All systems operating normally
+
+                </div>
+
+
+                <div
+                    id="currentAlert"
+                    class="alert normal-alert">
+
+                    ✓ Motor current within normal range
+
+                </div>
+
+
+                <div
+                    id="speedAlert"
+                    class="alert normal-alert">
+
+                    ✓ Motor speed within normal range
+
+                </div>
+
+
+                <div
+                    id="vibrationAlert"
+                    class="alert normal-alert">
+
+                    ✓ Motor vibration within normal range
+
+                </div>
+
+
+                <div
+                    id="temperatureAlert"
+                    class="alert normal-alert">
+
+                    ✓ Motor temperature within normal range
+
+                </div>
+
+
+                <div
+                    id="beltAlert"
+                    class="alert normal-alert">
+
+                    ✓ Belt condition normal
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+
+
+
+    </main>
+
+
+
+    <!-- ==========================================
+         FOOTER
+    =========================================== -->
+
+    <footer>
+
+        <p>
+            GARV FUSION • SIH26008
+        </p>
+
+        <p>
+            Intelligent Conveyor Belt Health Monitoring
+        </p>
+
+    </footer>
+    <!-- ==========================================
+         CHART.JS
+    =========================================== -->
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+
+    <!-- ==========================================
+         FIREBASE
+         READ ONLY
+         ESP32 → Firebase → Dashboard
+    =========================================== -->
+
+    <script type="module">
+
+        import {
+            initializeApp
+        } from
+        "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+
+        import {
+            getDatabase,
+            ref,
+            onValue
+        } from
+        "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+
+        // ======================================
+        // FIREBASE CONFIGURATION
+        // ======================================
+
+        const firebaseConfig = {
+
+            apiKey:
+                "AIzaSyAzTzXA--eFA08v8amh0u_o6dQ8WClaNlE",
+
+            authDomain:
+                "conveyor-health-monitoring.firebaseapp.com",
+
+            databaseURL:
+                "https://conveyor-health-monitoring-default-rtdb.asia-southeast1.firebasedatabase.app",
+
+            projectId:
+                "conveyor-health-monitoring",
+
+            storageBucket:
+                "conveyor-health-monitoring.firebasestorage.app",
+
+            messagingSenderId:
+                "42597375192",
+
+            appId:
+                "1:42597375192:web:83516398156f76d5de0bad",
+
+            measurementId:
+                "G-Z3SR37DGYC"
+
+        };
+
+
+        // ======================================
+        // INITIALIZE FIREBASE
+        // ======================================
+
+        const app =
+            initializeApp(firebaseConfig);
+
+        const database =
+            getDatabase(app);
+
+
+        // ======================================
+        // READ ONLY SENSOR PATH
+        // ======================================
+
+        const sensorRef =
+            ref(database, "sensorData");
+
+
+        // ======================================
+        // LISTEN TO REAL ESP32 DATA
+        // ======================================
+
+        onValue(
+            sensorRef,
+            (snapshot) => {
+
+                const data =
+                    snapshot.val();
+
+                console.log(
+                    "REAL ESP32 DATA:",
+                    data
+                );
+
+
+                if (!data) {
+                    return;
+                }
+
+
+                window.dispatchEvent(
+
+                    new CustomEvent(
+                        "firebaseSensorData",
+                        {
+                            detail: data
+                        }
+                    )
+
+                );
+
+            },
+
+            (error) => {
+
+                console.error(
+                    "Firebase read error:",
+                    error
+                );
+
+            }
+
+        );
+
+    </script>
+
+
+
+    <!-- ==========================================
+         MAIN JAVASCRIPT
+    =========================================== -->
+
+    <script src="script.js"></script>
+
+
+</body>
+
+</html>
